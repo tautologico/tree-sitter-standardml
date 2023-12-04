@@ -1,0 +1,238 @@
+{
+  "name": "standardml",
+  "rules": {
+    "prog": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dec"
+        },
+        {
+          "type": "STRING",
+          "value": "functor"
+        }
+      ]
+    },
+    "dec": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "val"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "valbind"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "typbind"
+            }
+          ]
+        }
+      ]
+    },
+    "valbind": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "pat"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "exp"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "rec"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "valbind"
+            }
+          ]
+        }
+      ]
+    },
+    "typbind": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typ"
+        }
+      ]
+    },
+    "typ": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "longid"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "typ"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
+    "pat": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "con"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        }
+      ]
+    },
+    "exp": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "con"
+        }
+      ]
+    },
+    "con": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "int"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char"
+        }
+      ]
+    },
+    "int": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "~"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+"
+        }
+      ]
+    },
+    "char": {
+      "type": "PATTERN",
+      "value": "#\".\""
+    },
+    "longid": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "."
+                }
+              },
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "([a-zA-Z](\\w|')*)|[!%&$#+\\-/:<=>?@\\\\~`^|*]"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "id": {
+      "type": "PATTERN",
+      "value": "([a-zA-Z](\\w|')*)|[!%&$#+\\-/:<=>?@\\\\~`^|*]"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\(\\*([^\\*]|\\*[^\\)])*\\*\\)"
+    },
+    {
+      "type": "PATTERN",
+      "value": "[\\r\\n\\t ]*"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

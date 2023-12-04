@@ -1,0 +1,214 @@
+[
+  {
+    "type": "con",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "typbind",
+          "named": true
+        },
+        {
+          "type": "valbind",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "exp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "con",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "int",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "longid",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pat",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "con",
+          "named": true
+        },
+        {
+          "type": "id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prog",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "dec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typ",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "longid",
+          "named": true
+        },
+        {
+          "type": "typ",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typbind",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "typ",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "valbind",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "exp",
+          "named": true
+        },
+        {
+          "type": "pat",
+          "named": true
+        },
+        {
+          "type": "valbind",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "char",
+    "named": true
+  },
+  {
+    "type": "functor",
+    "named": false
+  },
+  {
+    "type": "id",
+    "named": true
+  },
+  {
+    "type": "rec",
+    "named": false
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "val",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-standardml",
+  "version": "0.0.1",
+  "description": "tree-sitter grammar for Standard ML",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tautologico/tree-sitter-standardml.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "standardml"
+  ],
+  "author": "Andrei Formiga",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tautologico/tree-sitter-standardml/issues"
+  },
+  "homepage": "https://github.com/tautologico/tree-sitter-standardml#readme",
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  }
+}

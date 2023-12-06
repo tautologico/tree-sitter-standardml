@@ -24,12 +24,18 @@ module.exports = grammar({
             seq('rec', $.valbind)
         ),
 
-        typbind: $ => seq($.id, '=', $.typ),  // TODO: missing <var>(,), <and typbind>
+        typbind: $ => prec.left(seq(zeroOneOrList($.var),
+                                    $.id, '=', $.typ,
+                                    repeat(seq('and', $.typbind)))),  
 
-        typ: $ => choice(
-            $.longid,
-            seq('(', $.typ, ')')
-        ),
+        typ: $ => prec.left(choice(
+            $.var,
+            seq(zeroOneOrList($.typ), $.longid),
+            seq('(', $.typ, ')'),
+            prec.right(seq($.typ, '->', $.typ)),
+            prec.left(1, seq($.typ, '*', $.typ)),
+            seq('{', commaSep(seq($.lab, ':', $.typ)), '}')
+        )),
 
         // patterns
         pat: $ => choice(
@@ -56,5 +62,24 @@ module.exports = grammar({
         longid: $ => seq($.id, repeat(seq(token.immediate('.'), token.immediate(idRE)))),
 
         id: $ => idRE,
+
+        lab: $ => choice(
+            $.id,
+            /[1-9][0-9]*/
+        ),
+        
+        var: $ => /''?[A-Za-z0-9'_]*/,   //'
     }
 });
+
+// zero, one or multiple occurrences of rule in parentheses, 
+// separated by commas
+function zeroOneOrList(rule) {
+    return optional(choice(rule,
+                           seq('(', rule, repeat(seq(',', rule)), ')')));
+}
+
+function commaSep(rule) {
+    return optional(choice(rule, seq(rule, repeat(seq(',', rule)))));
+}
+                         

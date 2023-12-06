@@ -1,0 +1,136 @@
+=============
+Type variable
+=============
+
+type ty1 = 'a
+
+---
+
+(prog
+ (dec
+  (typbind
+   (id)
+   (typ
+    (var)))))
+
+
+=======================
+Multiple types with and
+=======================
+
+type salary = int
+and 'a payroll = 'a list
+and employee = { sal: salary, name: string }
+and ('a, 'b) map = ('a * 'b) list
+
+---
+
+(prog
+ (dec
+  (typbind
+   (id)
+   (typ
+    (longid
+     (id)))
+   (typbind
+    (var)
+    (id)
+    (typ
+     (typ
+      (var))
+     (longid
+      (id))))
+   (typbind
+    (id)
+    (typ
+     (lab
+      (id))
+     (typ
+      (longid
+       (id)))
+     (lab
+      (id))
+     (typ
+      (longid
+       (id)))))
+   (typbind
+    (var)
+    (var)
+    (id)
+    (typ
+     (typ
+      (typ
+       (typ
+        (var))
+       (typ
+        (var))))
+     (longid
+      (id)))))))
+
+
+=============
+Function type
+=============
+
+type callback = unit -> bool
+and 'a streamer = unit -> 'a
+
+---
+
+(prog
+ (dec
+  (typbind
+   (id)
+   (typ
+    (typ
+     (longid
+      (id)))
+    (typ
+     (longid
+      (id))))
+   (typbind
+    (var)
+    (id)
+    (typ
+     (typ
+      (longid
+       (id)))
+     (typ
+      (var)))))))
+
+
+===================
+Qualified type name
+===================
+
+type string = String.string
+and 'a map = 'a Map.hashmap
+and pair = (String.string * Char.char)
+
+---
+
+(prog
+ (dec
+  (typbind
+   (id)
+   (typ
+    (longid
+     (id)))
+   (typbind
+    (var)
+    (id)
+    (typ
+     (typ
+      (var))
+     (longid
+      (id))))
+   (typbind
+    (id)
+    (typ
+     (typ
+      (typ
+       (longid
+        (id)))
+      (typ
+       (longid
+        (id)))))))))

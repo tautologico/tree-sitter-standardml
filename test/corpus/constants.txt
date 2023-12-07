@@ -1,0 +1,80 @@
+============
+Int and word
+============
+
+val i = (1234, ~17, 0xABDAF, 0w345, ~0x579A, 0wxAABB7)
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat (id))
+   (exp
+    (exp (int))
+    (exp (int))
+    (exp (int))
+    (exp (word))
+    (exp (int))
+    (exp (word))))))
+
+
+======
+Floats
+======
+
+val ftup = (3.1415, ~99.11, 6.02e24, ~5e20, 1e~15)
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat (id))
+   (exp
+    (exp (float))
+    (exp (float))
+    (exp (float))
+    (exp (float))
+    (exp (float))))))
+
+
+=====
+Chars
+=====
+
+val chrs = (#"a", #"A", #"#", #"9", #" ", #"\n", #"\"", #"\uDA01")
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat (id))
+   (exp
+    (exp (char))
+    (exp (char))
+    (exp (char))
+    (exp (char))
+    (exp (char))
+    (exp (char))
+    (exp (char))
+    (exp (char))))))
+
+
+=======
+Strings
+=======
+
+val ss = ("simple", "newline\n", "so-called \"quotes\"", "\uDDA0 \t pos")
+
+---
+
+(prog
+ (dec (valbind
+       (pat (id))
+       (exp
+        (exp (string))
+        (exp (string))
+        (exp (string))
+        (exp (string))))))

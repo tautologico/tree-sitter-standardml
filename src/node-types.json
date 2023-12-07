@@ -1,24 +1,5 @@
 [
   {
-    "type": "con",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "char",
-          "named": true
-        },
-        {
-          "type": "int",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "dec",
     "named": true,
     "fields": {},
@@ -42,15 +23,40 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "con",
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "exp",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "float",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "int",
@@ -96,11 +102,27 @@
       "required": true,
       "types": [
         {
-          "type": "con",
+          "type": "char",
+          "named": true
+        },
+        {
+          "type": "float",
           "named": true
         },
         {
           "type": "id",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         }
       ]
@@ -199,6 +221,11 @@
     }
   },
   {
+    "type": "word",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -220,6 +247,18 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "0w",
+    "named": false
+  },
+  {
+    "type": "0wx",
+    "named": false
+  },
+  {
+    "type": "0x",
     "named": false
   },
   {
@@ -249,6 +288,10 @@
   {
     "type": "rec",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "type",

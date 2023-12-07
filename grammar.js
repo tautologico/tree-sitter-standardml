@@ -39,24 +39,47 @@ module.exports = grammar({
 
         // patterns
         pat: $ => choice(
-            $.con,
+            $._con,
             $.id                  // TODO:  missing <op> 
         ),
         
         // expressions
         exp: $ => choice(
-            $.con
+            $._con,
+            seq('(', $.exp, ',', $.exp, repeat(seq(',', $.exp)), ')')
         ),
         
         // constants
-        con: $ => choice(
+        _con: $ => choice(
             $.int,
-            $.char
+            $.word,
+            $.float,
+            $.char,
+            $.string
         ),
 
-        int: $ => seq(optional('~'), /\d+/),
+        int: $ => choice(
+            seq(optional('~'), $._num),
+            seq(optional('~'), '0x', $._hex)
+        ),
 
-        char: $ => /#"."/,
+        word: $ => choice(
+            seq('0w', $._num),
+            seq('0wx', $._hex)
+        ),
+
+        float: $ => choice(
+            seq(optional('~'), /\d+\.\d+/),
+            seq(optional('~'), /\d+(\.\d+)?e~?\d+/)
+        ),
+
+        char: $ => /#"((\\(["abvrnt\\]|\d\d\d|u[0-9A-Fa-f]{4}))|[^"])"/, // /#"((\\["abtnvfr\\])|[^"])"/,
+
+        string: $ => /"((\\")|[^"])*"/,
+
+        _num: $ => /\d+/,
+        _hex: $ => /[0-9A-Fa-f]+/,
+            
         
         // identifiers
         longid: $ => seq($.id, repeat(seq(token.immediate('.'), token.immediate(idRE)))),

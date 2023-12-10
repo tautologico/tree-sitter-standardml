@@ -24,10 +24,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "char",
+          "named": true
+        },
+        {
+          "type": "dec",
           "named": true
         },
         {
@@ -39,11 +43,31 @@
           "named": true
         },
         {
+          "type": "id",
+          "named": true
+        },
+        {
           "type": "int",
           "named": true
         },
         {
+          "type": "lab",
+          "named": true
+        },
+        {
+          "type": "longid",
+          "named": true
+        },
+        {
+          "type": "match",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "typ",
           "named": true
         },
         {
@@ -94,12 +118,31 @@
     }
   },
   {
+    "type": "match",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "exp",
+          "named": true
+        },
+        {
+          "type": "pat",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pat",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "char",
@@ -226,6 +269,10 @@
     "fields": {}
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -266,7 +313,27 @@
     "named": false
   },
   {
+    "type": ";",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "_",
     "named": false
   },
   {
@@ -274,16 +341,64 @@
     "named": false
   },
   {
+    "type": "andalso",
+    "named": false
+  },
+  {
+    "type": "case",
+    "named": false
+  },
+  {
     "type": "char",
     "named": true
+  },
+  {
+    "type": "do",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "fn",
+    "named": false
   },
   {
     "type": "functor",
     "named": false
   },
   {
+    "type": "handle",
+    "named": false
+  },
+  {
     "type": "id",
     "named": true
+  },
+  {
+    "type": "in",
+    "named": false
+  },
+  {
+    "type": "let",
+    "named": false
+  },
+  {
+    "type": "of",
+    "named": false
+  },
+  {
+    "type": "op",
+    "named": false
+  },
+  {
+    "type": "orelse",
+    "named": false
+  },
+  {
+    "type": "raise",
+    "named": false
   },
   {
     "type": "rec",
@@ -306,7 +421,15 @@
     "named": true
   },
   {
+    "type": "while",
+    "named": false
+  },
+  {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

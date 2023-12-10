@@ -1,0 +1,421 @@
+================================
+Application with tuple parameter
+================================
+
+val res = Math.pow(2.3, 0.2)
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (longid
+      (id)))
+    (exp
+     (exp
+      (float))
+     (exp
+      (float)))))))
+
+
+=================
+Record expression
+=================
+
+val record = { name = "Hulk", age = 34 }
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (lab
+     (id))
+    (exp
+     (string))
+    (lab
+     (id))
+    (exp
+     (int))))))
+
+
+===============
+List expression
+===============
+
+val lst = [ (0, "zero"), (1, "um"), (2, "dois") ]
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (exp
+      (int))
+     (exp
+      (string)))
+    (exp
+     (exp
+      (int))
+     (exp
+      (string)))
+    (exp
+     (exp
+      (int))
+     (exp
+      (string)))))))
+
+
+===================
+Expression sequence
+===================
+
+val sequence = ( print("Testing"); log(INFO, "Starting up"); 0 )
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (exp
+      (longid
+       (id)))
+     (exp
+      (exp
+       (string))))
+    (exp
+     (exp
+      (longid
+       (id)))
+     (exp
+      (exp
+       (longid
+        (id)))
+      (exp
+       (string))))
+    (exp
+     (int))))))
+
+
+=====================
+Let local declaration
+=====================
+
+val cal =
+  let
+    val r = { id = 0, title = "one", calibration = 2.4 }
+  in
+    print(#title r);
+    #calibration r
+  end
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (dec
+     (valbind
+      (pat
+       (id))
+      (exp
+       (lab
+        (id))
+       (exp
+        (int))
+       (lab
+        (id))
+       (exp
+        (string))
+       (lab
+        (id))
+       (exp
+        (float)))))
+    (exp
+     (exp
+      (longid
+       (id)))
+     (exp
+      (exp
+       (exp
+        (lab
+         (id)))
+       (exp
+        (longid
+         (id))))))
+    (exp
+     (exp
+      (lab
+       (id)))
+     (exp
+      (longid
+       (id))))))))
+
+
+===============
+Type annotation
+===============
+
+val n = 7 : int
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (int))
+    (typ
+     (longid
+      (id)))))))
+      
+
+================
+Raise expression
+================
+
+val notup = (2, 3,14, raise DataError)
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (int))
+    (exp
+     (int))
+    (exp
+     (int))
+    (exp
+     (exp
+      (longid
+       (id))))))))
+
+
+=================
+Handle expression
+=================
+
+val hndl = raise DataError
+  handle
+    DataError => 0
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (exp
+      (longid
+       (id)))
+     (match
+      (pat
+       (id))
+      (exp
+       (int))))))))
+
+
+=================
+Boolean operators
+=================
+
+val b1 = cond1 andalso (cond2 orelse cond3)
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (longid
+      (id)))
+    (exp
+     (exp
+      (exp
+       (longid
+        (id)))
+      (exp
+       (longid
+        (id)))))))))
+        
+
+================
+While expression
+================
+
+val res =
+  while true do (print "LOOP!"; print "---")
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (longid
+      (id)))
+    (exp
+     (exp
+      (exp
+       (longid
+        (id)))
+      (exp
+       (string)))
+     (exp
+      (exp
+       (longid
+        (id)))
+      (exp
+       (string))))))))
+
+
+===============
+Case expression
+===============
+
+val v =
+  case maybeGetValue(x) of
+    NONE => 0
+  | _ => 1
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (exp
+      (longid
+       (id)))
+     (exp
+      (exp
+       (longid
+        (id)))))
+    (match
+     (pat
+      (id))
+     (exp
+      (int))
+     (pat)
+     (exp
+      (int)))))))
+      
+
+==================
+Anonymous function
+==================
+
+val divBy = fn 0 => 0 | x => (40 * y) / x
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (match
+     (pat
+      (int))
+     (exp
+      (int))
+     (pat
+      (id))
+     (exp
+      (exp
+       (exp
+        (exp
+         (int))
+        (id)
+        (exp
+         (longid
+          (id)))))
+      (id)
+      (exp
+       (longid
+        (id)))))))))
+        
+
+=================
+Infix expressions
+=================
+
+val ops = (x * 4 + 7, 100 * y - z, "hello " ^ "world!")
+
+---
+
+(prog
+ (dec
+  (valbind
+   (pat
+    (id))
+   (exp
+    (exp
+     (exp
+      (exp
+       (longid
+        (id)))
+      (id)
+      (exp
+       (int)))
+     (id)
+     (exp
+      (int)))
+    (exp
+     (exp
+      (exp
+       (int))
+      (id)
+      (exp
+       (longid
+        (id))))
+     (id)
+     (exp
+      (longid
+       (id))))
+    (exp
+     (exp
+      (string))
+     (id)
+     (exp
+      (string)))))))
+      

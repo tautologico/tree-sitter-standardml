@@ -40,14 +40,39 @@ module.exports = grammar({
         // patterns
         pat: $ => choice(
             $._con,
+            '_',
             $.id                  // TODO:  missing <op> 
         ),
         
         // expressions
         exp: $ => choice(
             $._con,
-            seq('(', $.exp, ',', $.exp, repeat(seq(',', $.exp)), ')')
+            seq(optional('op'), $.longid),
+            prec.left(1, seq($.exp, $.exp)),     // function application
+            // TODO infix application (must take into account default precedences
+            seq('(', $.exp, ')'),
+            seq('(', $.exp, ',', $.exp, repeat(seq(',', $.exp)), ')'),
+            seq('{', commaSep(seq($.lab, '=', $.exp)), '}' ),
+            seq('#', $.lab),
+            seq('[', commaSep($.exp), ']'),
+            seq('(', $.exp, ';', $.exp, repeat(seq(';', $.exp)), ')'),   // sequence
+            seq('let', $.dec, 'in', $.exp, repeat(seq(';', $.exp)), 'end'),
+            // TODO raised precedence to avoid conflicts; probably should
+            // be a syntax error to have val pat = exp : typ id
+            prec(1, seq($.exp, ':', $.typ)),
+            prec.right(seq('raise', $.exp)),
+            prec(1, seq($.exp, 'handle', $.match)),
+            prec.left(1, seq($.exp, 'andalso', $.exp)),
+            prec.left(1, seq($.exp, 'orelse', $.exp)),
+            // infix application
+            // TODO: should take into account precedence of predefined operators
+            prec.left(2, seq($.exp, $.id, $.exp)),   
+            seq('while', $.exp, 'do', $.exp),
+            seq('case', $.exp, 'of', $.match),
+            seq('fn', $.match)
         ),
+
+        match: $ => prec.right(seq($.pat, '=>', $.exp, repeat(seq('|', $.pat, '=>', $.exp)))),
         
         // constants
         _con: $ => choice(
